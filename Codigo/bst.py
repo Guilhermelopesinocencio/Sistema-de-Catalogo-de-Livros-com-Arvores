@@ -55,31 +55,39 @@ class BST:
 
     # Percursos
     def pre_ordem(self, raiz):
+        res = []
         if raiz:
-            print(raiz.livro)
-            self.pre_ordem(raiz.esq)
-            self.pre_ordem(raiz.dir)
+            res.append(raiz.livro)
+            res += self.pre_ordem(raiz.esq)
+            res += self.pre_ordem(raiz.dir)
+        return res
 
     def in_ordem(self, raiz):
+        res = []
         if raiz:
-            self.in_ordem(raiz.esq)
-            print(raiz.livro)
-            self.in_ordem(raiz.dir)
+            res += self.in_ordem(raiz.esq)
+            res.append(raiz.livro)
+            res += self.in_ordem(raiz.dir)
+        return res
 
     def pos_ordem(self, raiz):
+        res = []
         if raiz:
-            self.pos_ordem(raiz.esq)
-            self.pos_ordem(raiz.dir)
-            print(raiz.livro)
+            res += self.pos_ordem(raiz.esq)
+            res += self.pos_ordem(raiz.dir)
+            res.append(raiz.livro)
+        return res
 
     def em_largura(self, raiz):
+        res = []
         if raiz is None:
-            return
+            return res
         fila = deque([raiz])
         while fila:
             atual = fila.popleft()
-            print(atual.livro)
+            res.append(atual.livro)
             if atual.esq:
                 fila.append(atual.esq)
             if atual.dir:
                 fila.append(atual.dir)
+        return res
